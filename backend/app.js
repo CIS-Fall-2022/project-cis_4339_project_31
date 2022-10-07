@@ -25,20 +25,11 @@ mongoose
 
 //declare port number for the api
 const PORT = process.env.PORT || 3000;
-
+const ORG = process.env.ORG
 //setup
 app.use(express.json());
 app.use(morgan("dev"));
 
-app.delete("/id/:id", (req, res) => {
-    eventdata.deleteOne({_id: req.params.id }, (error, data) => {
-        if(error){
-            return next(error)
-        } else {
-            res.status(200).json({msg:data})
-        }
-    })
-})
 
 //import routes
 const primaryDataRoute  = require('./routes/primaryData');

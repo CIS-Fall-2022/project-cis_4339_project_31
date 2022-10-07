@@ -31,7 +31,7 @@ router.get("/id/:id", (req, res, next) => {
         }
     );
 });
-//this is delete for prmiaryda
+//this is delete for primartydata
 router.delete("/del/:id", (req, res) => {
     primarydata.deleteOne({_id: req.params.id }, (error, data) => {
         if(error){

@@ -28,7 +28,7 @@ router.get("/id/:id", (req, res, next) => {
     })
 });
 //this is delete for eventdata
-router.delete("/id/:id", (req, res) => {
+router.delete("/del/:id", (req, res) => {
     eventdata.deleteOne({_id: req.params.id }, (error, data) => {
         if(error){
             return next(error)
