@@ -1,0 +1,51 @@
+{
+	"info": {
+		"_postman_id": "2b8fece5-b453-43f3-bbdc-5ac2fcbd01e4",
+		"name": "Delete Sprint2 Group31",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3000/primarydata/del/c6897d50-4521-11ed-b83a-73452a31d5ba",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/primarydata/del/c6897d50-4521-11ed-b83a-73452a31d5ba",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"primarydata",
+						"del",
+						"c6897d50-4521-11ed-b83a-73452a31d5ba"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/eventdata/del/22712b40-4522-11ed-b83a-73452a31d5ba",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/eventdata/del/22712b40-4522-11ed-b83a-73452a31d5ba",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"eventdata",
+						"del",
+						"22712b40-4522-11ed-b83a-73452a31d5ba"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
