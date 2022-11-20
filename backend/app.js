@@ -28,8 +28,7 @@ require("dotenv").config();
 class Server {
   
 
-  constructor(port, org) {
-    this.org = org
+  constructor(port, company) {
     this.port = port
     this.app = express();
 
@@ -53,9 +52,14 @@ class Server {
     const eventsDataRoute  = require('./routes/eventsData');
     this.app.use('/primaryData', primaryDataRoute);
     this.app.use('/eventData', eventsDataRoute);
-
+    var id  = 0
     this.app.get('/', function (req,res){
-      res.json({company: this.org})
+      if (req.query.id == id || id == 0) {
+        res.json({org: company})
+        id = req.query.id
+      } else {
+        res.sendStatus(403)
+      }
     });
 
 
