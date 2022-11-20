@@ -39,15 +39,17 @@ router.delete("/del/:id", (req, res) => {
 })
 
 //delete function for attendees by id
-router.delete("/delAttendee/:id", (req, res) => {
-    eventdata.deleteOne({attendees: req.body.attendee }, (error, data) => {
-        if(error){
-            return next(error)
-        } else {
-            res.status(200).json({msg:data})
-        }
-    })
-})
+router.put("/removeAttendee", (req, res, next) => {
+    eventdata.updateOne({_id: req.params.id},
+        {$pull: {attendees: req.body.id} },
+        (error, data) => {
+            if (error) {
+                return next(error);
+            } else {
+                res.json(data);
+            }
+        });
+});
 
 //GET entries based on search query
 //Ex: '...?eventName=Food&searchBy=name' 
