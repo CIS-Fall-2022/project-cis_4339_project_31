@@ -36,6 +36,10 @@ class Server {
     this.app.use(express.json());
     this.app.use(morgan("dev"));
 
+    this.app.use(cors({
+     origin: '*'
+    }));
+
     mongoose
     .connect(process.env.MONGO_URL)
     .then(() => {
@@ -83,6 +87,7 @@ for(org in orgs) {
     company.startServer()
   
 }
+
 
 // //declare port number for the api
 // const PORT = process.env.PORT
