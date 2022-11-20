@@ -50,11 +50,10 @@ class Server {
     this.app.use('/primaryData', primaryDataRoute);
     this.app.use('/eventData', eventsDataRoute);
 
-    // this.app.get('/', function (req,res){
-    //   res.json({company: this.org})
-    // });
+    this.app.get('/', function (req,res){
+      res.json({company: this.org})
+    });
 
-    
 
     this.app.use(function (err, req, res, next) {
       // logs error and error code to console
