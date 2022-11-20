@@ -27,9 +27,20 @@ router.get("/id/:id", (req, res, next) => {
         }
     })
 });
-//this is delete for eventdata
+//delete function for events by id
 router.delete("/del/:id", (req, res) => {
     eventdata.deleteOne({_id: req.params.id }, (error, data) => {
+        if(error){
+            return next(error)
+        } else {
+            res.status(200).json({msg:data})
+        }
+    })
+})
+
+//delete function for attendees by id
+router.delete("/delAttendee/:id", (req, res) => {
+    eventdata.deleteOne({attendees: req.body.attendee }, (error, data) => {
         if(error){
             return next(error)
         } else {
@@ -106,7 +117,7 @@ router.put("/:id", (req, res, next) => {
 
 //PUT add attendee to event
 router.put("/addAttendee/:id", (req, res, next) => {
-    //only add attendee if not yet signed uo
+    //only add attendee if not yet signed up
     eventdata.find( 
         { _id: req.params.id, attendees: req.body.attendee }, 
         (error, data) => { 
