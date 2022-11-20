@@ -196,6 +196,14 @@
               class="bg-red-700 text-white rounded"
             >Update Event</button>
           </div>
+          <!-- Container for the delete -->
+          <div class="flex justify-between mt-10 mr-20">
+            <button
+              @click="handleEventDelete"
+              type="submit"
+              class="bg-red-700 text-white rounded"
+            >Remove Event</button>
+          </div>
           <div class="flex justify-between mt-10 mr-20">
             <button
               type="reset"
@@ -315,6 +323,17 @@ export default {
       let apiURL = import.meta.env.VITE_ROOT_API + `/eventdata/${this.id}`;
       axios.put(apiURL, this.event).then(() => {
         alert("Update has been saved.");
+        this.$router.back().catch((error) => {
+          console.log(error);
+        });
+      });
+    },
+    //Delete method for the Event Details page
+    handleEventDelete() {
+      this.event.services = this.checkedServices;
+      let apiURL = import.meta.env.VITE_ROOT_API + `/eventdata/del/${this.id}`;
+      axios.delete(apiURL, this.event).then(() => {
+        alert("Event has been removed.");
         this.$router.back().catch((error) => {
           console.log(error);
         });
