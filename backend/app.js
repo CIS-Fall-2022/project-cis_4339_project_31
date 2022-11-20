@@ -51,7 +51,7 @@ class Server {
     this.app.use('/eventData', eventsDataRoute);
 
     // this.app.get('/', function (req,res){
-    //   res.send(this.org)
+    //   res.json({company: this.org})
     // });
 
     

@@ -60,19 +60,8 @@
 <script>
 import axios from "axios";
 export default {
-  name: "",
-  org: "",
-  methods: {
-   getorg() {
-    const url = import.meta.env.VITE_ROOT_API.split(",")
-    for(x in url) {
-      axios.get(url[x]+'/').then((resp) => {
-        this.org = resp
-        this.name = resp[-1]
-      })
-    }
-   } 
-  }
+  name: "App",
+  
 
 };
 </script>
