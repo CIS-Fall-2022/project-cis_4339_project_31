@@ -147,4 +147,19 @@ router.put("/addAttendee/:id", (req, res, next) => {
     
 });
 
+//PUT to remove attendee from an event
+router.put("/removeAttendee/:id", (req, res, next) => {
+    eventdata.updateOne(
+        {_id: req.params.id},
+        {$pull: {attendees: req.body.attendee}}, {timestamps: true},
+        (error, data) => {
+            if (error) {
+                consol
+                return next(error);
+            } else {
+                res.json(data);
+            }
+        }
+    );
+});
 module.exports = router;
