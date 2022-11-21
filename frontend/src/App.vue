@@ -48,7 +48,8 @@
           background: linear-gradient(250deg, #C8102E 70%, #efecec 50.6%);
         "
       >
-        <h1 class="mr-20 text-3xl text-white">Dataplatform</h1>
+      
+        <h1 class="mr-20 text-3xl text-white">{{org}}</h1>
       </section>
       <div>
         <router-view></router-view>
@@ -61,7 +62,16 @@
 import axios from "axios";
 export default {
   name: "App",
-  
+  data() {
+    return {
+      org: ''
+    }
+  },
+  beforeMount(){
+    axios.get('http://localhost:3000/').then((resp) => {
+        this.org = resp.data.org
+      });
+  }
 };
 </script>
 

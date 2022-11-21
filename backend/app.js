@@ -54,12 +54,13 @@ class Server {
     this.app.use('/eventData', eventsDataRoute);
     var id  = 0
     this.app.get('/', function (req,res){
-      if (req.query.id == id || id == 0) {
-        res.json({org: company})
-        id = req.query.id
-      } else {
-        res.sendStatus(403)
-      }
+      res.json({org: company})
+      // if (req.query.id == id || id == 0) {
+      //   res.json({org: company})
+      //   id = req.query.id
+      // } else {
+      //   res.sendStatus(403)
+      // }
     });
 
 
