@@ -53,9 +53,11 @@
           <div class="flex flex-col">
             <label class="block">
               <span class="text-gray-700">Description</span>
+              <!-- added event to display the event description -->
               <textarea
                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 rows="2"
+                v-model="event.description"
               ></textarea>
             </label>
           </div>
@@ -196,6 +198,14 @@
               class="bg-red-700 text-white rounded"
             >Update Event</button>
           </div>
+          <!-- Container for the delete -->
+          <div class="flex justify-between mt-10 mr-20">
+            <button
+              @click="handleEventDelete"
+              type="submit"
+              class="bg-red-700 text-white rounded"
+            >Remove Event</button>
+          </div>
           <div class="flex justify-between mt-10 mr-20">
             <button
               type="reset"
@@ -315,6 +325,17 @@ export default {
       let apiURL = import.meta.env.VITE_ROOT_API + `/eventdata/${this.id}`;
       axios.put(apiURL, this.event).then(() => {
         alert("Update has been saved.");
+        this.$router.back().catch((error) => {
+          console.log(error);
+        });
+      });
+    },
+    //Delete method for the Event Details page
+    handleEventDelete() {
+      this.event.services = this.checkedServices;
+      let apiURL = import.meta.env.VITE_ROOT_API + `/eventdata/del/${this.id}`;
+      axios.delete(apiURL, this.event).then(() => {
+        alert("Event has been removed.");
         this.$router.back().catch((error) => {
           console.log(error);
         });

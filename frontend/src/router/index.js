@@ -34,6 +34,7 @@ const routes = [
         name: 'findEvents',
         component: () => import('../components/findEvents.vue')
     },
+
     {
         path: '/eventDetails/:id',
         name: 'eventdetails',

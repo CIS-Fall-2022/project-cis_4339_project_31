@@ -27,7 +27,7 @@ router.get("/id/:id", (req, res, next) => {
         }
     })
 });
-//this is delete for eventdata
+//delete function for events by id
 router.delete("/del/:id", (req, res) => {
     eventdata.deleteOne({_id: req.params.id }, (error, data) => {
         if(error){
@@ -37,6 +37,19 @@ router.delete("/del/:id", (req, res) => {
         }
     })
 })
+
+//delete function for attendees by id
+router.put("/removeAttendee", (req, res, next) => {
+    eventdata.updateOne({_id: req.params.id},
+        {$pull: {attendees: req.body.id} },
+        (error, data) => {
+            if (error) {
+                return next(error);
+            } else {
+                res.json(data);
+            }
+        });
+});
 
 //GET entries based on search query
 //Ex: '...?eventName=Food&searchBy=name' 
@@ -106,7 +119,7 @@ router.put("/:id", (req, res, next) => {
 
 //PUT add attendee to event
 router.put("/addAttendee/:id", (req, res, next) => {
-    //only add attendee if not yet signed uo
+    //only add attendee if not yet signed up
     eventdata.find( 
         { _id: req.params.id, attendees: req.body.attendee }, 
         (error, data) => { 
@@ -134,4 +147,19 @@ router.put("/addAttendee/:id", (req, res, next) => {
     
 });
 
+//PUT to remove attendee from an event
+router.put("/removeAttendee/:id", (req, res, next) => {
+    eventdata.updateOne(
+        {_id: req.params.id},
+        {$pull: {attendees: req.body.attendee}}, {timestamps: true},
+        (error, data) => {
+            if (error) {
+                consol
+                return next(error);
+            } else {
+                res.json(data);
+            }
+        }
+    );
+});
 module.exports = router;

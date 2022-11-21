@@ -104,6 +104,24 @@ export default {
         });
       });
     },
+    //Delete method for the update client page
+    handleClientDelete() {
+      let apiURL = import.meta.env.VITE_ROOT_API + `/primarydata/del/${this.id}`;
+      axios.delete(apiURL, this.client).then(() => {
+        alert("Update has been saved.");
+        this.$router.back().catch((error) => {
+          console.log(error);
+        });
+      });
+    },
+    //Put method to remove attendee from an event
+    handleClientRemove(client) {
+      let apiURL = import.meta.env.VITE_ROOT_API + `/eventsData/removeAttendee/${this.id}`;
+      if (window.confirm("Remove this Attendee?")) {
+        axios.put(apiURL, {attendee: client}).then(() => {
+          window.location.reload();
+      }
+    )}},
     addToEvent() {
       this.eventsChosen.forEach((event) => {
         let apiURL =
@@ -332,6 +350,14 @@ export default {
               class="bg-red-700 text-white rounded"
             >Update Client</button>
           </div>
+          <!-- container for the-->
+          <div class="flex justify-between mt-10 mr-20">
+            <button
+              @click="handleClientDelete"
+              type="submit"
+              class="bg-red-700 text-white rounded"
+            >Remove Client</button>
+          </div>
           <div class="flex justify-between mt-10 mr-20">
             <button
               type="reset"
@@ -359,6 +385,11 @@ export default {
                 <tr v-for="event in clientEvents" :key="event._id">
                   <td class="p-2 text-left">{{ event.eventName }}</td>
                   <td class="p-2 text-left">{{ formattedDate(event.eventDate) }}</td>
+                  <td
+                    @click="handleClientRemove"
+                    type="submit"
+                    class="bg-red-700 text-white rounded"
+                    >Remove</td>
                 </tr>
               </tbody>
             </table>
