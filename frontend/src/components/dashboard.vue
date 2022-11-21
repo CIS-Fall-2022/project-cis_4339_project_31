@@ -1,22 +1,18 @@
 <template>
-
-
-    <div class="row justify-content-center">
-      <table class="table table-striped">
-        <thead class="table-dark">
-          <tr>
-            <th>Event</th>
-            <th>Number of Attendees</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="eventName in eventData" :key="eventName._id">
-            <td>{{eventName.eventName}}</td>
-            <td>{{eventName.attendees.length}}</td>
-          </tr> 
-        </tbody>
-      </table>
-    </div>
+    <table class="table table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th>Event</th>
+          <th>Number of Attendees</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="eventName in eventData" :key="eventName._id">
+          <td>{{eventName.eventName}}</td>
+          <td>{{eventName.attendees.length}}</td>
+        </tr> 
+      </tbody>
+    </table>
 </template>
 
 <script>
