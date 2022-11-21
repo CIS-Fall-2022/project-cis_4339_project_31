@@ -6,29 +6,9 @@ const cors = require("cors");
 //allow using a .env file
 require("dotenv").config();   
 
-//creates a new instance of express application
-// const app = express();
-
-// // add cors header to the server
-// app.use(cors({
-//   origin: '*'
-// }));
-
-// //sets up mongoose for the mongoDB connection
-// mongoose
-//   .connect(process.env.MONGO_URL)
-//   .then(() => {
-//     console.log("Database connection Success!");
-//   })
-//   .catch((err) => {
-//     console.error("Mongo Connection Error", err);
-//   });
-
-
+//started with converting to a class
 class Server {
-  
-
-  constructor(port, company) {
+    constructor(port, company) {
     this.port = port
     this.app = express();
 
@@ -53,14 +33,10 @@ class Server {
     this.app.use('/primaryData', primaryDataRoute);
     this.app.use('/eventData', eventsDataRoute);
     var id  = 0
+    //created get method for
     this.app.get('/', function (req,res){
       res.json({org: company})
-      // if (req.query.id == id || id == 0) {
-      //   res.json({org: company})
-      //   id = req.query.id
-      // } else {
-      //   res.sendStatus(403)
-      // }
+  
     });
 
 
@@ -74,52 +50,27 @@ class Server {
   }
     
 
-  
+  //this starts the server
   startServer(){
     this.app.listen(this.port, () => {
       console.log("Server started listening on port : ", this.port);
     });
   }
 }
-
+//gets the ports and orgs names for each of the instance
 const orgs = process.env.ORG.split(",");
 const ports = process.env.PORT.split(",");
-
+//creates and insrance of class for each of the orgs in the env varible
 for(org in orgs) {
+    //converts port to int
     var p = parseInt(ports[org])
     var c = orgs[org]
+    //creates new class 
     var company = new Server(p, c)
+    //starts the server
     company.startServer()
   
 }
 
 
-// //declare port number for the api
-// const PORT = process.env.PORT
-// const ORG = process.env.ORG
-// //setup
-// app.use(express.json());
-// app.use(morgan("dev"));
-
-
-// //import routes
-// const primaryDataRoute  = require('./routes/primaryData');
-// const eventsDataRoute  = require('./routes/eventsData');
-
-// //setup middle ware for routes
-// app.use('/primaryData', primaryDataRoute);
-// app.use('/eventData', eventsDataRoute)
-
-// app.listen(PORT, () => {
-//   console.log("Server started listening on port : ", PORT);
-// });
-
-// //error handler
-// app.use(function (err, req, res, next) {
-//   // logs error and error code to console
-//   console.error(err.message, req);
-//   if (!err.statusCode)
-//     err.statusCode = 500;
-//   res.status(err.statusCode).send(err.message);
-// });
 

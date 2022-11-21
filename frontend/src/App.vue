@@ -62,11 +62,13 @@
 import axios from "axios";
 export default {
   name: "App",
+  // return the org name for the template
   data() {
     return {
       org: ''
     }
   },
+  // before the template mount to vue run this function to get the org name
   beforeMount(){
     axios.get('http://localhost:3000/').then((resp) => {
         this.org = resp.data.org
